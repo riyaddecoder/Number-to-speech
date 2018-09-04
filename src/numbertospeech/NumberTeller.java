@@ -1,8 +1,8 @@
-package numberteller;
+package numbertospeech;
 
-import numberteller.service.FileLuncher;
-import numberteller.service.Manager;
-import numberteller.view.JFrameHome;
+import numbertospeech.service.FileLuncher;
+import numbertospeech.service.Manager;
+import numbertospeech.view.JFrameHome;
 
 /**
  * riyadnoapara@gmail.com

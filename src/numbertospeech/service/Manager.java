@@ -1,7 +1,7 @@
 /**
  * This class accomplishes few task.
  */
-package numberteller.service;
+package numbertospeech.service;
 
 import java.awt.Dimension;
 import java.awt.Point;

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package numberteller.view;
+package numbertospeech.view;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import numberteller.service.FileLuncher;
-import numberteller.service.Manager;
+import numbertospeech.service.FileLuncher;
+import numbertospeech.service.Manager;
 
 /**
  *
