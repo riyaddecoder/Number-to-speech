@@ -6,18 +6,19 @@ import numbertospeech.view.JFrameHome;
 
 /**
  * riyadnoapara@gmail.com
- * http://github.com/riyad-ctg/netbeans-projects
+ * https://github.com/riyad-ctg/Number-to-speech
  * +8801829443600
  * 
  * @author RIYAD
  */
+
 public class NumberTeller {
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         /**
-         * The is the main method where from execution starts
+         * The is the main method where execution starts
          * Set the Nimbus look and feel
          * 
          */
@@ -38,8 +39,8 @@ public class NumberTeller {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                FileLuncher fileLuncher = new FileLuncher(); //Dependency injection
-                Manager manager = new Manager();        //Dependency injection
+                FileLuncher fileLuncher = new FileLuncher(); //Reducing Dependencies
+                Manager manager = new Manager();        //Reducing Dependencies
                 
                 JFrameHome jFrameHome = new JFrameHome(manager,fileLuncher); //This is the main view
                 jFrameHome.setVisible(true);

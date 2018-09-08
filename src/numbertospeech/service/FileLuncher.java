@@ -1,3 +1,7 @@
+/**
+ * Manages files/assets
+ * To play sounds from asset folder
+ */
 package numbertospeech.service;
 import java.io.File;
 import java.io.IOException;
@@ -11,24 +15,23 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-/** 
- * This class is created for easily accessing files with branch of methods.
+/**
+ * riyadnoapara@gmail.com
+ * https://github.com/riyad-ctg/Number-to-speech
+ * +8801829443600
  * 
- * @author Riyad
+ * @author RIYAD
  */
 
 
 public class FileLuncher {
     
-    public String recordingPath;
     public long Gotmili = 0; 
-    //public final String directoryPath = "C:/VoiceReminderFiles/";
     private AudioInputStream audioInputStream; 
     private Clip clip; 
     private File playedFile; 
     
-    public FileLuncher(){
-    }
+    public FileLuncher(){}
 
     /**
      * To play a sound.
@@ -39,13 +42,17 @@ public class FileLuncher {
     public void playSound(String filePath) throws IOException, URISyntaxException{
         try {
             
-            URL fileUrl = File.class.getResource(filePath);
-            playedFile = new File(fileUrl.toURI());
+           /**
+            * Getting the file
+            * Playing it how we play a wav file.
+            */
+            URL fileUrl = File.class.getResource(filePath); 
+            playedFile = new File(fileUrl.toURI());  
             audioInputStream = AudioSystem.getAudioInputStream(playedFile);
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             this.Gotmili= clip.getMicrosecondLength()/100000; //Saving the length of millis of the (file/100) for progress bar
-            clip.start();
+            clip.start();       //Clip start means start the audio.
         } catch(UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
             ex.printStackTrace();
         }

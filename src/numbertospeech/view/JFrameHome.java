@@ -1,5 +1,5 @@
 /**
- * 
+ * The home frame or the main view.
  */
 package numbertospeech.view;
 
@@ -15,7 +15,10 @@ import numbertospeech.service.FileLuncher;
 import numbertospeech.service.Manager;
 
 /**
- *
+ * riyadnoapara@gmail.com
+ * https://github.com/riyad-ctg/Number-to-speech
+ * +8801829443600
+ * 
  * @author RIYAD
  */
 public class JFrameHome extends javax.swing.JFrame {
@@ -25,6 +28,8 @@ public class JFrameHome extends javax.swing.JFrame {
     private Thread t;
     
     /**
+     * 
+     * The constructor
      * @param manager
      * @param fileLuncher
      */
@@ -35,7 +40,7 @@ public class JFrameHome extends javax.swing.JFrame {
             this.manager = manager;
             this.fileLuncher = fileLuncher;
             
-            this.setLocation(manager.setOnCenterLocation(this.getSize()));
+            manager.setOnCenterLocation(this);
             this.setLimitToJTextField(15);
             
             fileLuncher.playSound("/numbertospeech/assets/inputanumber.wav");
@@ -43,6 +48,10 @@ public class JFrameHome extends javax.swing.JFrame {
         
     }
     
+    /**
+     * Setting maximum length that can be typed in the textfield.
+     * @param limit The limited digit. Default is 15
+     */
     private void setLimitToJTextField(int limit){
         this.jTextFieldNumber.addKeyListener(new KeyAdapter() {
             @Override
@@ -136,7 +145,9 @@ public class JFrameHome extends javax.swing.JFrame {
         numberChecker();
     }//GEN-LAST:event_jTextFieldNumberActionPerformed
 
-    
+    /**
+     * Validates the number and do other things.
+     */
     private void numberChecker(){
         try {
             /****************** DATA VALIDATION STARTS *********************/
@@ -161,18 +172,23 @@ public class JFrameHome extends javax.swing.JFrame {
             
             /****************** DATA VALIDATION ENDS *********************/
             
-            thenumber = manager.formatTheNumber(thenumber);
-            jTextFieldNumber.setText(thenumber);
+            thenumber = manager.formatTheNumber(thenumber); //Formatting deleting front zeroes.
+            jTextFieldNumber.setText(thenumber); 
             
             List<String> instructions = manager.instructionsGenerator(thenumber);
                
-            numberProcessor(instructions);
+            numberProcessor(instructions);  //Ok play and show all instrutions.
             
         } catch (IOException | URISyntaxException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
     }
     
+    /**
+     * Creates and Recreates thread that is play instructions 
+     * in a efficient way.
+     * @param instructions A list of instructions. 
+     */
     private void numberProcessor(List<String> instructions){
         if(t != null && t.isAlive()){
             t.stop();
@@ -195,7 +211,10 @@ public class JFrameHome extends javax.swing.JFrame {
         t.start();
     }
     
-    
+    /**
+     * Play a single instruction/audio
+     * @param instruction The instruction which being played.
+     */
     private void singleInstructionPlayer(String instruction){
         try {
             fileLuncher.playSound("/numbertospeech/assets/"+instruction+".wav");

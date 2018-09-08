@@ -1,5 +1,6 @@
 /**
- * This class accomplishes few task.
+ * Methods of this class accomplishes few tasks.
+ * Thats why we called it Manager.
  */
 package numbertospeech.service;
 
@@ -8,29 +9,31 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
 
 /**
- *
+ * riyadnoapara@gmail.com
+ * https://github.com/riyad-ctg/Number-to-speech
+ * +8801829443600
+ * 
  * @author RIYAD
  */
-public final class Manager {
+public class Manager {
     
     public static final int EMPTY_STRING = 456,FALSE_STRING = 983,VALID_STRING = 786;
     
     
     /**
-     * This method does returns a point to centering to frame with respect to screen resolution.
-     * @param frameSize The size of the frame
-     * @return A point to reposition the frame.
+     * Centering a frame with respect to screen resolution.
+     * @param frame The frame that is being centered.
      */
-    public Point setOnCenterLocation(Dimension frameSize){
+    public void setOnCenterLocation(JFrame frame){
         Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
-        Point pp = new Point((screenDimension.width-frameSize.width)/2,(screenDimension.height-frameSize.height)/2);
-        return pp;
+        frame.setLocation((screenDimension.width-frame.getWidth())/2,(screenDimension.height-frame.getHeight())/2);
     }
     
     /**
-     * This method converts a single integer value to string
+     * Converts a single integer digit to string
      * @param num the single digit integer number
      * @return String converted from number
      */
@@ -61,6 +64,12 @@ public final class Manager {
         }
     }
     
+    /**
+     * Converts two digit integer number to string
+     * @param num1 the first digit of two digit integer number
+     * @param num2 the second digit of two digit integer number
+     * @return String converted from number
+     */
     public String getTranslatedDigit(char num1,char num2){
         if(num1 == '0'){
             if(num2 == '0') return "";
@@ -114,6 +123,14 @@ public final class Manager {
         }
     }
     
+    /**
+     * 
+     * Converts three digit integer number to string
+     * @param num1 first digit of the three digit integer number
+     * @param num2 second digit of the three digit integer number
+     * @param num3 third digit of the three digit integer number
+     * @return converted from three digit number
+     */
     public String getTranslatedDigit(char num1,char num2,char num3){
         if(num1 == '0') return getTranslatedDigit(num2, num3);
         else return getTranslatedDigit(num1) + " hundred " + getTranslatedDigit(num2, num3);
@@ -121,13 +138,13 @@ public final class Manager {
     
     /**
      * Just formating the number with deleting front zeroes
-     * @param number
-     * @return 
+     * @param number the number that being formated
+     * @return the formated number
      */
     public String formatTheNumber(String number){
         boolean allZeores = true;
         int len = number.length();
-        int got = 0; // When got a digit that is not zero
+        int got = 0; // where from leading zeroes end.
         for(int i = 0;i<len;i++){
             if(number.charAt(i)!='0'){
                 got = i;
@@ -139,6 +156,12 @@ public final class Manager {
         else return (String) number.subSequence(got, len);
     }
     
+    /**
+     * 
+     * Checking string is invalid or not.
+     * @param numString the number that being checked.
+     * @return The result is invalid or not.
+     */
     public int stringChecker(String numString){
         int len = numString.length();
         if(len == 0) return EMPTY_STRING;
@@ -152,8 +175,16 @@ public final class Manager {
         return VALID_STRING;
     }
     
-    
+    /**
+     * Converting a number string to a list of instructions.
+     * @param number the number being converted
+     * @return  a list of strings to play/show
+     */
     public List<String> instructionsGenerator(String number){
+        /**
+         * First we generate a string that contains instructions.
+         * Then we generate a list with the help of getInstructionListFromString method.
+         */
         String []otherInstructions = {"thousand","million","billion","trillion"};
         int instructionIndex = -1;
         String str = "";
@@ -181,6 +212,11 @@ public final class Manager {
         return getInstructionListFromString(str);
     }
     
+    /**
+     * Generate a list of instructions.
+     * @param instructionString A string that contains instructions.
+     * @return List of instructions.
+     */
     private List<String> getInstructionListFromString(String instructionString){
         List<String> instructorList = new ArrayList<>();
         String temp = "";
