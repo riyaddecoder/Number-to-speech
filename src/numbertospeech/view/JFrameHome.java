@@ -38,7 +38,7 @@ public class JFrameHome extends javax.swing.JFrame {
             this.setLocation(manager.setOnCenterLocation(this.getSize()));
             this.setLimitToJTextField(15);
             
-            fileLuncher.playSound("/numberteller/assets/inputanumber.wav");
+            fileLuncher.playSound("/numbertospeech/assets/inputanumber.wav");
         } catch (IOException | URISyntaxException ex) {}
         
     }
@@ -146,14 +146,14 @@ public class JFrameHome extends javax.swing.JFrame {
             
             if(result == Manager.EMPTY_STRING){
                 fileLuncher.stopSound();
-                fileLuncher.playSound("/numberteller/assets/inputanumber.wav");
+                fileLuncher.playSound("/numbertospeech/assets/inputanumber.wav");
                 jTextFieldNumber.requestFocus();
                 return;
             }
             
             if(result == Manager.FALSE_STRING){
                 fileLuncher.stopSound();
-                fileLuncher.playSound("/numberteller/assets/thisisnot.wav");
+                fileLuncher.playSound("/numbertospeech/assets/thisisnot.wav");
                 jTextFieldNumber.requestFocus();
                 jTextFieldNumber.selectAll();
                 return;
@@ -198,7 +198,7 @@ public class JFrameHome extends javax.swing.JFrame {
     
     private void singleInstructionPlayer(String instruction){
         try {
-            fileLuncher.playSound("/numberteller/assets/"+instruction+".wav");
+            fileLuncher.playSound("/numbertospeech/assets/"+instruction+".wav");
         } catch (IOException | URISyntaxException ex) {
             Logger.getLogger(JFrameHome.class.getName()).log(Level.SEVERE, null, ex);
         }
